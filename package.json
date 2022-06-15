@@ -1,0 +1,28 @@
+{
+  "name": "lowdb---nodejs-rest-api-lowdb",
+  "version": "1.0.0",
+  "description": "Uso de  archivo  .JSON como DB con LowDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julioadriglez/LowDB---Nodejs-REST-API-Lowdb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Julioadriglez/LowDB---Nodejs-REST-API-Lowdb/issues"
+  },
+  "homepage": "https://github.com/Julioadriglez/LowDB---Nodejs-REST-API-Lowdb#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "lowdb": "^3.0.0",
+    "morgan": "^1.10.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
