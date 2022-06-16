@@ -6,7 +6,7 @@ let db;
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); //convierte un impor a una ruta que dirname puede entender
 
-async function createConnection() {
+export async function createConnection() { // se exporta por que el archivo principal de mi aplicacion lo va a ejecutar 
     const file = join(__dirname, '../db.json');// le damos la dirección del archivo para que se cree
     const adapter = new JSONFile(file); //le manda la ruta del archivo que va a crear
     db = new Low(adapter); //se crea una nueva conexión para pasar el adapter
@@ -18,4 +18,4 @@ async function createConnection() {
 
     db.write(); //write para guardar en .json
 }
-createConnection() 
+export const getConnection = () => db; //getConecction retorna el objeto de db 
