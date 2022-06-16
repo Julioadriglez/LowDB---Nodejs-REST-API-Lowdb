@@ -6,14 +6,16 @@ let db;
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); //convierte un impor a una ruta que dirname puede entender
 
-function createConnection() {
-    const file = join(__dirname, '../db.json')
-    const adapter = new JSONFile(file) //creael archivo db.json
-    db = new Low(adapter)
-    console.log(db)
+async function createConnection() {
+    const file = join(__dirname, '../db.json');// le damos la dirección del archivo para que se cree
+    const adapter = new JSONFile(file); //le manda la ruta del archivo que va a crear
+    db = new Low(adapter); //se crea una nueva conexión para pasar el adapter
+    console.log(db);
     
-    db.data = {test: "Hello world"}
+    await db.read (); //primero se le el archivo antes de agregar datos a db.json
+    
+    db.data ||= {tasks:[]}; // ||= si db esta vacio le asigna el valor tasks:[] y si tiene algo solo va a continuar y no va asignar nada
 
-    db.write()
+    db.write(); //write para guardar en .json
 }
 createConnection() 
