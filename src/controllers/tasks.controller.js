@@ -11,13 +11,17 @@ export const createTask = async (req, res) => { //para crear tarea
         id: v4(), //se ejecuta uuid mediante v4 para cear el id
         name: req.body.name,
         description: req.body.description
+    };
+    try { //mandar mensaje por si hay un error
+        const db = getConnection();
+        db.data.tasks.push(newTask); //esto solo lo inserta en memoria 
+        await db.write(); //guarda la aplicación dentro de la base de datos
+        
+        res.json(newTask);
+    } catch (error) {
+        return res.status(500).send({message: error.message}); //esto se manda si hay error
     }
-
-    const db = getConnection();
-    db.data.tasks.push(newTask); //esto solo lo inserta en memoria 
-    await db.write() //guarda la aplicación dentro de la base de datos
-    res.json(newTask)
-}
+};
 
 export const getTask = (req, res) => { //para obtener una unica tarea
     res.send("sending task by id");
