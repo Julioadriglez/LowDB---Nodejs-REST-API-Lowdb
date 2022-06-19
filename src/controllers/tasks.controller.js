@@ -1,8 +1,17 @@
+import {v4} from 'uuid';
+
 export const getTasks = (req, res) => {
     res.send("sending tasks");
 }
 
 export const createTask = (req, res) => { //para crear tarea
+    
+    const newTask = {
+        id: v4(),
+        name: req.body.name,
+        description: req.body.description
+    }
+    console.log(newTask);
     res.send("Creating task");
 }
 
