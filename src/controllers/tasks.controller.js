@@ -3,21 +3,21 @@ export const getTasks = (req, res) => {
 }
 
 export const createTask = (req, res) => { //para crear tarea
-    res.send("sending tasks");
+    res.send("Creating task");
 }
 
 export const getTask = (req, res) => { //para obtener una unica tarea
-    res.send("sending tasks");
+    res.send("sending task by id");
 }
 
 export const updateTask = (req, res) => { //para actualizar una tarea 
-    res.send("sending tasks");
+    res.send("updating task");
 }
 
 export const deleteTask = (req, res) => { //para eliminar una tarea
-    res.send("sending tasks");
+    res.send("deleting task");
 }
 
 export const count = (req, res) => { //para contar tareas
-    res.send("sending tasks");
+    res.send("counting tasks");
 }
