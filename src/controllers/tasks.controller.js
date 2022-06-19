@@ -1,18 +1,22 @@
-import {v4} from 'uuid';
+import {v4} from 'uuid'; //se llama a uuid para generar ids aleatorios 
+import {getConnection} from '../database.js';
 
 export const getTasks = (req, res) => {
     res.send("sending tasks");
 }
 
-export const createTask = (req, res) => { //para crear tarea
+export const createTask = async (req, res) => { //para crear tarea
     
     const newTask = {
-        id: v4(),
+        id: v4(), //se ejecuta uuid mediante v4 para cear el id
         name: req.body.name,
         description: req.body.description
     }
-    console.log(newTask);
-    res.send("Creating task");
+
+    const db = getConnection();
+    db.data.tasks.push(newTask); //esto solo lo inserta en memoria 
+    await db.write() //guarda la aplicación dentro de la base de datos
+    res.json(newTask)
 }
 
 export const getTask = (req, res) => { //para obtener una unica tarea
