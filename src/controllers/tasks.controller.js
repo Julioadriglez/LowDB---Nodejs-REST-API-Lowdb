@@ -27,22 +27,33 @@ export const createTask = async (req, res) => { //para crear tarea
 export const getTask = (req, res) => { //para obtener una unica tarea
     const taskFound = getConnection().data.tasks.find(
         (task) => task.id === req.params.id); //filtra latarea por medio del id
-    if(!taskFound) return res.sendStatus(400);
+    if(!taskFound) return res.sendStatus(404); //cuando se mete un parametro idefinido manda este error 
     res.json(taskFound);
 }
-export const updateTask = (req, res) => { //para actualizar una tarea 
-    res.send("updating task");
-}
+export const updateTask = async (req, res) => { //para actualizar una tarea 
+    const db = getConnection();
+    const taskFound = db.data.tasks.find((t) => t.id === req.params.id ? taskFound : t);
+    if(!taskFound) return res.sendStatus(404);
+
+    taskFound.name = req.body.name;
+    taskFound.description = req.body.description;
+
+    db.data.tasks.map(t => t.id === req.params.id);
+
+    await db.write();
+
+    res.send(taskFound); 
+};
 
 export const deleteTask = async (req, res) => { //para eliminar una tarea
     const db = getConnection();
     const taskFound = db.data.tasks.find((t) => t.id === req.params.id);
-    if(!taskFound) return res.sendStatus(400);
+    if(!taskFound) return res.sendStatus(404);
 
     const newTask = db.data.tasks.filter((t) => t.id !== req.params.id); //filtra el id y lo elimina
     db.data.tasks = newTask;
 
-    await db.write(); //guardaria nuevamente los datos
+    await db.write(); //guarda nuevamente los datos
     res.json(taskFound)
 
 }
