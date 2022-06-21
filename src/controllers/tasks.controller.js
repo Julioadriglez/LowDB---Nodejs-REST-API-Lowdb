@@ -2,8 +2,9 @@ import {v4} from 'uuid'; //se llama a uuid para generar ids aleatorios
 import {getConnection} from '../database.js';
 
 export const getTasks = (req, res) => {
-    res.send("sending tasks");
-}
+    const tasks = getConnection().data.tasks //muestra toda la informacion del db
+    res.json(tasks)
+};
 
 export const createTask = async (req, res) => { //para crear tarea
     
@@ -24,9 +25,11 @@ export const createTask = async (req, res) => { //para crear tarea
 };
 
 export const getTask = (req, res) => { //para obtener una unica tarea
-    res.send("sending task by id");
+    const taskFound = getConnection().data.tasks.find(
+        (task) => task.id === req.params.id); //filtra latarea por medio del id
+    if(!taskFound) return res.sendStatus(400);
+    res.json(taskFound)
 }
-
 export const updateTask = (req, res) => { //para actualizar una tarea 
     res.send("updating task");
 }
