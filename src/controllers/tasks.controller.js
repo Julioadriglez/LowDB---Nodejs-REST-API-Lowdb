@@ -54,10 +54,10 @@ export const deleteTask = async (req, res) => { //para eliminar una tarea
     db.data.tasks = newTask;
 
     await db.write(); //guarda nuevamente los datos
-    res.json(taskFound)
-
-}
+    res.json(taskFound);
+};
 
 export const count = (req, res) => { //para contar tareas
-    res.send("counting tasks");
+    const totalTasks = getConnection().data.tasks.length; // cuanta las tareas con length
+    res.json(totalTasks);
 }
