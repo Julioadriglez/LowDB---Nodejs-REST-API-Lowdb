@@ -12,6 +12,11 @@ Se utilizo un archivo `.json` como una `db` para guardar tareas con ayuda del mo
 * `Nodejs`
 * `Nodemon`
 * `Uuid`
+* `Morgan`
+
+## Diseño
+
+
 
 
 
