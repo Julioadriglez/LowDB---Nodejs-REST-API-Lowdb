@@ -10,7 +10,6 @@ export async function createConnection() { // se exporta por que el archivo prin
     const file = join(__dirname, '../db.json');// le damos la dirección del archivo para que se cree
     const adapter = new JSONFile(file); //le manda la ruta del archivo que va a crear
     db = new Low(adapter); //se crea una nueva conexión para pasar el adapter
-    console.log(db);
     
     await db.read (); //primero se le el archivo antes de agregar datos a db.json
     
