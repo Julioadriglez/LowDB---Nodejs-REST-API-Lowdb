@@ -32,13 +32,13 @@ export const getTask = (req, res) => { //para obtener una unica tarea
 }
 export const updateTask = async (req, res) => { //para actualizar una tarea 
     const db = getConnection();
-    const taskFound = db.data.tasks.find((t) => t.id === req.params.id ? taskFound : t);
+    const taskFound = db.data.tasks.find((t) => t.id === req.params.id);
     if(!taskFound) return res.sendStatus(404);
 
     taskFound.name = req.body.name;
     taskFound.description = req.body.description;
 
-    db.data.tasks.map(t => t.id === req.params.id);
+    db.data.tasks.map(t => t.id === req.params.id ? taskFound : t);
 
     await db.write();
 

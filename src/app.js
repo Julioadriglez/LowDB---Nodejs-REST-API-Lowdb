@@ -7,4 +7,4 @@ app.use(express.json()) //cuando envian una dato en formato .json el podra leerl
 
 app.use(taskRoutes);
 
-export default app; //con esto esportamos app
+export default app; //con esto exportamos app
